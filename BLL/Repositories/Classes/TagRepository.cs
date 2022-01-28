@@ -1,4 +1,5 @@
-﻿using BLL.Repositories.Interfaces;
+﻿using BLL.Exceptions;
+using BLL.Repositories.Interfaces;
 using Domain;
 using Domain.Models;
 using System;
@@ -17,16 +18,21 @@ namespace BLL.Repositories.Classes
 
         public void Edit(Guid id, Tag entity)
         {
-            throw new NotImplementedException();
+            var obj = FakeDBContext.Tags.FirstOrDefault(x => x.Id == id);
+            if (obj != null)
+            {
+                obj.Name = entity.Name; 
+            }
+            else {
+                throw new TagException("Not Tag!!!");
+            }
         }
 
-        // ToDo
         public Tag FindByName(string name)
         {
             return FakeDBContext.Tags.FirstOrDefault(x=>x.Name == name);
         }
 
-        // ToDo
         public List<Tag> FindMany(Expression<Func<Tag, bool>> filter = null)
         {
             if ( filter!= null )
@@ -37,16 +43,19 @@ namespace BLL.Repositories.Classes
             return FakeDBContext.Tags;
         }
 
-        // ToDo
         public Tag FindOne(Expression<Func<Tag, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            if (filter != null)
+            {
+                return FakeDBContext.Tags.Where(filter.Compile()).FirstOrDefault();
+            }
+
+            return FakeDBContext.Tags.FirstOrDefault();
         }
 
-        // ToDo
         public List<Tag> GetAll()
         {
-            throw new NotImplementedException();
+            return FakeDBContext.Tags.ToList();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BLL.Managers.Interfaces;
 using BLL.Services.Classes;
+using Domain;
 using Domain.Models;
 using System;
 
@@ -16,7 +17,10 @@ namespace ComicsShop
 
         static void Main(string[] args)
         {
-            Console.WriteLine(GetSpecialTags("Marvel").Name);
+            foreach (var item in tagService.FindMany(x=>x.Name[0] == 'M')) {
+                Console.WriteLine(item.Name);
+            }
+            Console.WriteLine(tagService.FindOne(x => x.Name[0] == 'M').Name);
         }
 
         static Tag GetSpecialTags(string name)
