@@ -11,7 +11,7 @@ namespace BLL.Repositories.Interfaces
     {
         void Add(T entity);
 
-        void Edit(T entity);
+        void Edit(Guid id,T entity);
 
         List<T> GetAll();
 
