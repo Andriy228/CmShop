@@ -16,7 +16,7 @@ namespace BLL.Repositories.Classes
             throw new NotImplementedException();
         }
 
-        public void Edit(Author entity)
+        public void Edit(Guid id, Author entity)
         {
             throw new NotImplementedException();
         }

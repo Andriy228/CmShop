@@ -15,7 +15,7 @@ namespace BLL.Repositories.Classes
             FakeDBContext.Tags.Add(entity);
         }
 
-        public void Edit(Tag entity)
+        public void Edit(Guid id, Tag entity)
         {
             throw new NotImplementedException();
         }
