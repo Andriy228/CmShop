@@ -1,6 +1,6 @@
-﻿using BLL.Managers.Interfaces;
-using BLL.Repositories.Classes;
+﻿using BLL.Repositories.Classes;
 using BLL.Repositories.Interfaces;
+using BLL.Services.Interfaces;
 using Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace BLL.Services.Classes
         public void Add(Tag tag) {
             tagRepository.Add(tag);
         }
-        public void Edit(Guid id, Tag tag)
+        public void Edit(int id, Tag tag)
         {
             tagRepository.Edit(id, tag);
         }
@@ -35,6 +35,11 @@ namespace BLL.Services.Classes
         }
         public List<Tag> FindMany(Expression<Func<Tag, bool>> filter = null) {
             return tagRepository.FindMany(filter);
+        }
+
+        public void Delete(int id)
+        {
+            tagRepository.Delete(id);
         }
     }
 }
